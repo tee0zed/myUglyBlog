@@ -1,16 +1,11 @@
 module Posts
   class CreatePost < ActiveInteraction::Base
     string :title, :content
-    object :user
+    object :user, :blog
 
-    validates :title,
-              presence: true,
-              length: { maximum: 250 }
+    validates :title, length: { maximum: 250 }
 
-    validates :content,
-              presence: true
-
-    validates :user,
+    validates :content, :user, :blog, :title,
               presence: true
 
     def to_model
@@ -21,7 +16,8 @@ module Posts
       post = Post.new(
         title: title,
         content: content,
-        user: user
+        user: user,
+        blog: blog
       )
 
       if post.save

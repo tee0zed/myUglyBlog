@@ -1,4 +1,6 @@
 ru:
+  appname: MyUglyBlog
+  company: TeeZed
   activerecord:
     errors:
       messages:

@@ -15,13 +15,13 @@ module Posts
               if: 'subdomain'
 
     def execute
-      blog.title = title if title
-      blog.subdomain = subdomain if subdomain
+      post.title = title if title
+      post.content = content if content
 
-      if blog.save
-        blog
+      if post.save
+        post
       else
-        error.merge!(blog.errors)
+        error.merge!(post.errors)
       end
     end
   end

@@ -6,10 +6,8 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.0.3-4",
     "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.3.0",
-    "bootstrap": "4.3.1",
-    "jquery": "^3.5.1",
+    "@rails/webpacker": "^6.0.0-pre.1",
+    "bootstrap": "^5.0.0-beta1",
     "popper.js": "^1.16.1",
     "trix": "^1.2.0"
   },

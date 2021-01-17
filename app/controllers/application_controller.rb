@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-  helper_method :current_blog
+  protect_from_forgery with: :null_session
+  helper_method :current_blog, :ensure_subdomain
+
+  private
 
   def current_blog
     @current_blog ||= Blogs::FindBlog.run!(subdomain: request.subdomain)
   end
 
-  private
-
   def ensure_subdomain
-    redirect_to root_path unless current_blog.present?
+    redirect_to blogs_path unless current_blog.present?
   end
 end

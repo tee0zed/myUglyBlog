@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'blogs#index'
 
-  constraints(!SubdomainRoutes) do
-    resources :blogs, only: [:new]
+  constraints !SubdomainRoutes do
+    resources :blogs, only: :new
+    get '/index', to: 'blogs#index', as: :root
   end
 
-  constraints(SubdomainRoutes) do
-    resources :blogs, except: [:index, :new] do
-      resources :posts do
-        resources :comments
-      end
+  constraints SubdomainRoutes do
+    get '/', to: 'blogs#show', as: :blogs_show
+    get '/edit', to: 'blogs#edit', as: :blogs_edit
+    patch '/', to: 'blogs#update', as: :blogs_update
+    delete '/', to: 'blogs#destroy', as: :blogs_destroy
+
+    resources :posts do
+      resources :comments, only: %i[create destroy]
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

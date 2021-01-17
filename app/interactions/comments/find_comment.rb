@@ -8,7 +8,7 @@ module Comments
       if comment
         comment
       else
-        errors.add(:id, t('comment.none') )
+        errors.add(:id, t('comment.none'))
       end
     end
   end

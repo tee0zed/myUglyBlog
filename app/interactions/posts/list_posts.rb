@@ -1,5 +1,5 @@
 module Posts
-  class ListBlogs < ActiveInteraction::Base
+  class ListPosts < ActiveInteraction::Base
     object :blog
 
     def execute

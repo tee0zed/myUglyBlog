@@ -26,11 +26,10 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    blog = current_blog
     @blog = Blogs::UpdateBlog.new(
-      blog: blog,
-      title: blog.title,
-      subdomain: blog.subdomain
+      blog: current_blog,
+      title: current_blog.title,
+      subdomain: current_blog.subdomain
     )
   end
 
@@ -40,11 +39,10 @@ class BlogsController < ApplicationController
 
     if blog.valid?
       flash[:notice] = t 'blog.updated'
-      redirect_to blog.result
     else
       flash[:alert] = blog.errors.full_messages.to_sentence
-      render :edit
     end
+    redirect_to current_blog
   end
 
   def destroy
@@ -52,10 +50,9 @@ class BlogsController < ApplicationController
 
     if result.valid?
       flash[:notice] = t 'blog.destroyed'
-      redirect_to root_path
     else
       flash[:alert] = result.errors.full_messages.to_sentence
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 end
